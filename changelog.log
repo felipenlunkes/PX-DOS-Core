@@ -1,0 +1,96 @@
+Sistema Operacional PX-DOS 0.9.0
+---*---*---*---*---*---*---*---*---
+
+Changelog do PX-DOS - Data do lançamento: 09/12/2016
+
+[2014-2016]
+
+* Mensagens de erro mais explicativas e de fácil compreensão;
+* Correção de BUGS causados pelo carregamento indevido de Drivers inválidos;
+* Correção de problemas ocasionados pelo carregamento de arquivos secundários
+  que fazem parte de um pacote de software (bibliotecas e demais arquivos com
+  códigos em formato executável);
+* Melhorias de desempenho ao ser executado em disquetes formatados com o sistema de
+  arquivos FAT12;
+* Suporte melhorado a sistemas de arquivo FAT12 e FAT16;
+* Melhorias no controle de arquivos através de manipuladores especializados,
+  que proporcionam mais funções de gerenciamento;
+* Novos modelos de cabeçalho, implementação e execução de código de Driver;
+* Novos modelos de desenvolvimento de aplicativos para o sistema;
+* Melhorias de desempenho ao ser executado sobre discos rígidos formatados com o
+  sistema de arquivos FAT12 ou FAT16;
+* Verificação de validade de Drivers e Apps durante o processo de carregamento, evitando
+  o carregamento indevido de software não compatível ou potencialmente danoso ao sistema;
+
+[07/12/2015]
+
+* Melhoramentos no suporte a dispositivos removíveis e de armazenamento em massa;
+* Suporte a pendrives e demais dispositivos de armazenamento USB conectados ao
+  computador, que estejam formatados com FAT12 ou FAT16, apenas. Exemplos: HD externo,
+  pendrive, cartão de memória, etc;
+* Melhorias no gerenciamento de memória e no seu aproveitamente pelos componentes do
+  sistema e seus aplicativos;
+* Melhorias no gerenciamento do processador;
+
+
+[08/12/2015]
+
+* Melhorias no controle de resolução de tela;
+* Melhorias no controle de dispositivos de entrada;
+* Novas funções implementadas no manipulador de interrupção (int 20h, 21h e 90h);
+* Capacidade de se definir uma data ao sistema a qualquer momento, através
+  de comando específico
+* Melhorias nos atributos de arquivos;
+* Suporte a melhores resoluções de tela;
+
+[09/12/2015]
+
+* Funções de exclusão e cópias de arquivo [Experimentais e talvez não funcionais];
+* Implementação parcial de enviar para dispositivo de saída, direto do interpretador de
+  comandos (Experimental);
+
+[18/06/2016]
+
+* Suporte a APM e modo de desligamento via Driver APM 1.2;
+
+[18/06/2016, 22:21]
+
+* Mensagens de erro durante funções da implementaçãp APM;
+* Suporte melhorado da implementação APM;
+* Avanços de estabilidade em todo o sistema;
+* Correções de BUGS encontrados;
+* Correção nos comentários de código;
+
+[25/06/2016]: Início deste log com as alterações no Sistema Operacional PX-DOS®
+
+* Alterações no suporte APM;
+* Alterações nos comentários do arquivo que contém o código de sistema de arquivos FAT (fat.c);
+* Alterações no arquivo FORMATO (formato.c);
+
+[09/10/2016]: Alterações na manipulação de Drivers de Dispositivo
+
+* Agora todo o cabeçalho do Driver é lido e as informações pertinentes são armazenadas;
+* Nova função 18h da int 90h retorna os Drivers carregados e os respectivos tamanhos;
+* Informações de erro expandidas para Drivers de Dispositivo;
+* Registro seguro de Drivers de Dispositivo carregados;
+* Contador de Drivers e de memória reformulados e mais eficientes;
+
+[15/10/2016]: Alterações no gerenciamento de memória
+
+* Agora os aplicativos carregados são listados pelo sistema;
+* O sistema retorna as informações de executáveis carregados na memória;
+* Perspectivas: finalizar Drivers e APPS utilizando o seus respectivos códigos (PIDs);
+
+[15/10/2016, 16:09, RC1]: Alterações no gerencamento de memória #2
+
+* Agora os aplicativos podem solicitar a quantidade de memória utilizada pelo sistema e aplicativos;
+* Agora o sistema exibe corretamente todos os executáveis (Drivers, APPS e módulos) carregados;
+* Remoção de variáveis e estruturas sem uso ou substituídas por outras interfaces;
+* Mensagens de erro atualizadas (mais amigáveis ao usuário);
+* Função 18h da int 90h retorna os Drivers e APPS carregados e os respectivos tamanhos (função BX=01h);
+* Função 18h da int 90h retorna a memória total utilizada (função BX=02h);
+
+[16/10/2016]: Alterações no gerenciamento de memória
+
+* Agora todas as funções de manipulação de listas de executáveis na memória são realizadas por funções específicas
+  e separadas das funções de carregamento e validação de executáveis (mais estabilidade e rastreamento de bugs);
