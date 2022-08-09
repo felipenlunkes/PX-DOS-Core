@@ -4,31 +4,53 @@
 /*                                                                   */
 /*                                                                   */
 /*   #$$%%@!#$%                                                      */
-/*   !!@#!$!$!$         Sistema Operacional PX-DOS ®                 */
+/*   !!@#!$!$!$         Sistema Operacional PX-DOS                   */
 /*   !@@#   #$%                                                      */
 /*   #$$%   &*$                                                      */
 /*   $#%@   @#&                                                      */
 /*   #%$&*(@*@&                                                      */
-/*   @#$@$#@$%$     © 2013-2016 Felipe Miguel Nery Lunkes            */
+/*   @#$@$#@$%$       2013-2022 (c) Felipe Miguel Nery Lunkes        */
 /*   $%&*                Todos os direitos reservados                */
 /*   @#&*                                                            */
-/*   @&*%                                                            */
-/*   #&*@                                                            */
+/*   @&*%       Esse software se baseia em cÃ³digos disponÃ­veis       */
+/*   #&*@                     em domÃ­nio pÃºblico                     */
 /*                                                                   */
 /*                                                                   */
-/* O PX-DOS ® é marca registrada de Felipe Miguel Nery Lunkes no     */
-/* Brasil. © 2013-2016 Felipe Miguel Nery Lunkes. Todos os direitos  */
-/* reservados. A reprodução total ou parcial, de quaisquer trechos   */
-/* do código aqui presente é expressamente probida, sendo passível   */
-/* de punição legal severa.                                          */
-/*                                                                   */
-/* Copyright © 2013-2016 Felipe Miguel Nery Lunkes                   */
-/* Todos os direitos reservados.                                     */
-/*                                                                   */
-/*********************************************************************/ 
+/*********************************************************************/
+/*
+
+Copyright (c) 2013-2022, Felipe Miguel Nery Lunkes
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 /*********************************************************************/
 /*                                                                   */
-/*  Funções em baixo nível do sistema                                */
+/*  Funï¿½ï¿½es em baixo nï¿½vel do sistema                                */
 /*                                                                   */
 /*********************************************************************/
 
@@ -175,7 +197,7 @@ int PXDOS_ImprimirTela(void)
 
 /*****************************************************************************************/
 
-/* PXDOS_AlterarModoVideo - BIOS Int 10h Função 00h */
+/* PXDOS_AlterarModoVideo - BIOS Int 10h Funï¿½ï¿½o 00h */
 
 int PXDOS_AlterarModoVideo(unsigned long modo)
 {
@@ -192,7 +214,7 @@ int PXDOS_AlterarModoVideo(unsigned long modo)
 
 /*****************************************************************************************/
 
-/* PXDOS_AlterarTipoCursor - BIOS Int 10h Função 01h */
+/* PXDOS_AlterarTipoCursor - BIOS Int 10h Funï¿½ï¿½o 01h */
 
 int PXDOS_AlterarTipoCursor(int topo, int fundo)
 {
@@ -210,7 +232,7 @@ int PXDOS_AlterarTipoCursor(int topo, int fundo)
 
 /*****************************************************************************************/
 
-/* PXDOS_DefinirPosicaoCursor - BIOS Int 10h Função 02h */
+/* PXDOS_DefinirPosicaoCursor - BIOS Int 10h Funï¿½ï¿½o 02h */
 
 int PXDOS_DefinirPosicaoCursor(int pagina, int linha, int coluna)
 {
@@ -229,7 +251,7 @@ int PXDOS_DefinirPosicaoCursor(int pagina, int linha, int coluna)
 
 /*****************************************************************************************/
 
-/* PXDOS_LerPosicaoCursor - BIOS Int 10h Função 03h */
+/* PXDOS_LerPosicaoCursor - BIOS Int 10h Funï¿½ï¿½o 03h */
 
 int PXDOS_LerPosicaoCursor(int pagina, 
                           int *InicioCursor,
@@ -253,7 +275,7 @@ int PXDOS_LerPosicaoCursor(int pagina,
 
 /*****************************************************************************************/
 
-/* PXDOS_LerCanetaDeLuz - BIOS Int 10h Função 04h */
+/* PXDOS_LerCanetaDeLuz - BIOS Int 10h Funï¿½ï¿½o 04h */
 
 int PXDOS_LerCanetaDeLuz(int *gatilho,
                     unsigned long *pcolunas,
@@ -279,7 +301,7 @@ int PXDOS_LerCanetaDeLuz(int *gatilho,
 
 /*****************************************************************************************/
 
-/* PXDOS_DefinirPaginaDisplayAtiva - BIOS Int 10h Função 05h */
+/* PXDOS_DefinirPaginaDisplayAtiva - BIOS Int 10h Funï¿½ï¿½o 05h */
 
 int PXDOS_DefinirPaginaDisplayAtiva(int pagina)
 {
@@ -296,7 +318,7 @@ int PXDOS_DefinirPaginaDisplayAtiva(int pagina)
 
 /*****************************************************************************************/
 
-/* PXDOS_RolarJanelaCima - BIOS Int 10h Função 06h */
+/* PXDOS_RolarJanelaCima - BIOS Int 10h Funï¿½ï¿½o 06h */
 
 int PXDOS_RolarJanelaCima(int numeroLinhas,
                       int atributo,
@@ -323,7 +345,7 @@ int PXDOS_RolarJanelaCima(int numeroLinhas,
 
 /*****************************************************************************************/
 
-/* PXDOS_RolarJanelaBaixo - BIOS Int 10h Função 07h */
+/* PXDOS_RolarJanelaBaixo - BIOS Int 10h Funï¿½ï¿½o 07h */
 
 int PXDOS_RolarJanelaBaixo(int numeroLinhas,
                         int atributo,
@@ -350,7 +372,7 @@ int PXDOS_RolarJanelaBaixo(int numeroLinhas,
 
 /*****************************************************************************************/
 
-/* PXDOS_LerAtributoChar - BIOS Int 10h Função 08h */
+/* PXDOS_LerAtributoChar - BIOS Int 10h Funï¿½ï¿½o 08h */
 
 int PXDOS_LerAtributoChar(int pagina, int *ch, int *atributo)
 {
@@ -369,7 +391,7 @@ int PXDOS_LerAtributoChar(int pagina, int *ch, int *atributo)
 
 /*****************************************************************************************/
 
-/* PXDOS_EscreverAtributoChar - BIOS Int 10h Função 09h */
+/* PXDOS_EscreverAtributoChar - BIOS Int 10h Funï¿½ï¿½o 09h */
 
 int PXDOS_EscreverAtributoChar(int pagina, int ch, int atributo, unsigned long num)
 {
@@ -389,7 +411,7 @@ int PXDOS_EscreverAtributoChar(int pagina, int ch, int atributo, unsigned long n
 
 /*****************************************************************************************/
 
-/* PXDOS_ImprimirCursorChar - BIOS Int 10h Função 0Ah */
+/* PXDOS_ImprimirCursorChar - BIOS Int 10h Funï¿½ï¿½o 0Ah */
 
 int PXDOS_ImprimirCursorChar(int pagina, int ch, int coluna, unsigned long num)
 {
@@ -409,7 +431,7 @@ int PXDOS_ImprimirCursorChar(int pagina, int ch, int coluna, unsigned long num)
 
 /*****************************************************************************************/
 
-/* PXDOS_DefinirPaletadeCores - BIOS Int 10h Função 0Bh */
+/* PXDOS_DefinirPaletadeCores - BIOS Int 10h Funï¿½ï¿½o 0Bh */
 
 int PXDOS_DefinirPaletadeCores(int id, int val)
 {
@@ -427,7 +449,7 @@ int PXDOS_DefinirPaletadeCores(int id, int val)
 
 /*****************************************************************************************/
 
-/* PXDOS_ImprimirPixel - BIOS Int 10h Função 0Ch */
+/* PXDOS_ImprimirPixel - BIOS Int 10h Funï¿½ï¿½o 0Ch */
 
 int PXDOS_ImprimirPixel(int pagina, 
                           int cor, 
@@ -450,7 +472,7 @@ int PXDOS_ImprimirPixel(int pagina,
 
 /*****************************************************************************************/
 
-/* PXDOS_LerPixel - BIOS Int 10h Função 0Dh */
+/* PXDOS_LerPixel - BIOS Int 10h Funï¿½ï¿½o 0Dh */
 
 int PXDOS_LerPixel(int pagina, 
                          unsigned long linha,
@@ -475,7 +497,7 @@ int PXDOS_LerPixel(int pagina,
 
 /*****************************************************************************************/
 
-/* PXDOS_ImprimirTexto - BIOS Int 10h Função 0Eh */
+/* PXDOS_ImprimirTexto - BIOS Int 10h Funï¿½ï¿½o 0Eh */
 
 int PXDOS_ImprimirTexto(int pagina, int ch, int cor)
 {
@@ -494,7 +516,7 @@ int PXDOS_ImprimirTexto(int pagina, int ch, int cor)
 
 /*****************************************************************************************/
 
-/* PXDOS_ObterModoVideo - BIOS Int 10h Função 0Fh */
+/* PXDOS_ObterModoVideo - BIOS Int 10h Funï¿½ï¿½o 0Fh */
 
 int PXDOS_ObterModoVideo(int *colunas, int *modo, int *pagina)
 {

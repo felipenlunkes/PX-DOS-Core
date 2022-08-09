@@ -1,33 +1,55 @@
-;;********************************************************************/
-;;                                                                   */
-;;                                                                   */
-;;                                                                   */
-;;                                                                   */
-;;   #$$%%@!#$%                                                      */
-;;   !!@#!$!$!$         Sistema Operacional PX-DOS ®                 */
-;;   !@@#   #$%                                                      */
-;;   #$$%   &*$                                                      */
-;;   $#%@   @#&                                                      */
-;;   #%$&*(@*@&                                                      */
-;;   @#$@$#@$%$     © 2013-2016 Felipe Miguel Nery Lunkes            */
-;;   $%&*                Todos os direitos reservados                */
-;;   @#&*                                                            */
-;;   @&*%                                                            */
-;;   #&*@                                                            */
-;;                                                                   */
-;;                                                                   */
-;; O PX-DOS ® é marca registrada de Felipe Miguel Nery Lunkes no     */
-;; Brasil. © 2013-2016 Felipe Miguel Nery Lunkes. Todos os direitos  */
-;; reservados. A reprodução total ou parcial, de quaisquer trechos   */
-;; do código aqui presente é expressamente probida, sendo passível   */
-;; de punição legal severa.                                          */
-;;                                                                   */
-;; Copyright © 2013-2016 Felipe Miguel Nery Lunkes                   */
-;; Todos os direitos reservados.                                     */
-;;                                                                   */
-;;********************************************************************/ 
+;;/*********************************************************************/
+;;/*                                                                   */
+;;/*                                                                   */
+;;/*                                                                   */
+;;/*                                                                   */
+;;/*   #$$%%@!#$%                                                      */
+;;/*   !!@#!$!$!$         Sistema Operacional PX-DOS                   */
+;;/*   !@@#   #$%                                                      */
+;;/*   #$$%   &*$                                                      */
+;;/*   $#%@   @#&                                                      */
+;;/*   #%$&*(@*@&                                                      */
+;;/*   @#$@$#@$%$       2013-2022 (c) Felipe Miguel Nery Lunkes        */
+;;/*   $%&*                Todos os direitos reservados                */
+;;/*   @#&*                                                            */
+;;/*   @&*%       Esse software se baseia em cÃ³digos disponÃ­veis       */
+;;/*   #&*@                     em domÃ­nio pÃºblico                     */
+;;/*                                                                   */
+;;/*                                                                   */
+;;/*********************************************************************/
+;;/*
 ;;
-;; Funções em baixo nível
+;; Copyright (c) 2013-2022, Felipe Miguel Nery Lunkes
+;; All rights reserved.
+;;
+;; Redistribution and use in source and binary forms, with or without
+;; modification, are permitted provided that the following conditions are met:
+;;
+;; * Redistributions of source code must retain the above copyright notice, this
+;;   list of conditions and the following disclaimer.
+;;
+;; * Redistributions in binary form must reproduce the above copyright notice,
+;;   this list of conditions and the following disclaimer in the documentation
+;;   and/or other materials provided with the distribution.
+;;
+;; * Neither the name of the copyright holder nor the names of its
+;;   contributors may be used to endorse or promote products derived from
+;;   this software without specific prior written permission.
+;;
+;; THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+;; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+;; IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+;; DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+;; FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+;; DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+;; SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+;; CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+;; OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+;; OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+;; */
+
+;;
+;; Funï¿½ï¿½es em baixo nï¿½vel
 ;;
 
 % .model memodel, c
@@ -173,7 +195,7 @@ novaspaginas:
         push cs
         push ax
 
-; O MS-DOS coloca um 0 no fim quando volta da interrupção
+; O MS-DOS coloca um 0 no fim quando volta da interrupï¿½ï¿½o
         
         mov ax, 0
         push ax
@@ -192,9 +214,9 @@ novaspaginas:
 
 chamareignorar label near
 
-        pop ax ; pular endereço de retorno,
+        pop ax ; pular endereï¿½o de retorno,
         pop ax ;   
-        pop ax ; Obter código de retorno
+        pop ax ; Obter cï¿½digo de retorno
 
 ;;*********************************************************************/
 		
@@ -297,27 +319,27 @@ colocarAbs endp
 
 ;;*********************************************************************/
 
-desligar proc ;; Função para o desligamento do computador, acessível 
-              ;; apenas após a passagem por métodos de segurança
+desligar proc ;; Funï¿½ï¿½o para o desligamento do computador, acessï¿½vel 
+              ;; apenas apï¿½s a passagem por mï¿½todos de seguranï¿½a
 			  
 ;;*********************************************************************/
 ;;
-;;             Parte da implementação APM do PX-DOS®
+;;             Parte da implementaï¿½ï¿½o APM do PX-DOSï¿½
 ;;
-;;        Copyright © 2013-2016 Felipe Miguel Nery Lunkes
+;;        Copyright ï¿½ 2013-2016 Felipe Miguel Nery Lunkes
 ;;
 ;;*********************************************************************/
 
 ;;*********************************************************************/
 ;;
-;; Esta função pode retornar códigos de erro, os quais se seguem:
+;; Esta funï¿½ï¿½o pode retornar cï¿½digos de erro, os quais se seguem:
 ;;
 ;;
-;; Retorno em AX - código de erro:
+;; Retorno em AX - cï¿½digo de erro:
 ;;
-;; 0 = Falha na instalação do Driver
-;; 1 = Falha na conexão de interface de Modo Real
-;; 2 = Driver APM versão 1.2 não suportado
+;; 0 = Falha na instalaï¿½ï¿½o do Driver
+;; 1 = Falha na conexï¿½o de interface de Modo Real
+;; 2 = Driver APM versï¿½o 1.2 nï¿½o suportado
 ;; 3 = Falha ao alterar o status para "off"
 ;;
 ;;*********************************************************************/
@@ -327,54 +349,54 @@ desligar_sistema:
 	push bx
 	push cx
 
-	mov ax, 5300h		;; Função de checagem da instalação
+	mov ax, 5300h		;; Funï¿½ï¿½o de checagem da instalaï¿½ï¿½o
 	mov bx, 0			;; O ID do dispositivo (APM BIOS)
-	int 15h				;; Chamar interrupção APM
+	int 15h				;; Chamar interrupï¿½ï¿½o APM
 	
 	jc APM_falha_instalacao
 
-	mov ax, 5301h		;; Função de interface de conexão em modo real
+	mov ax, 5301h		;; Funï¿½ï¿½o de interface de conexï¿½o em modo real
 	mov bx, 0			;; O ID do dispositivo (APM BIOS)
-	int 15h				;; Chamar interrupção APM
+	int 15h				;; Chamar interrupï¿½ï¿½o APM
 	
 	jc APM_falha_conexao
 
-	mov ax, 530Eh		;; Função de seleção de versão do Driver
+	mov ax, 530Eh		;; Funï¿½ï¿½o de seleï¿½ï¿½o de versï¿½o do Driver
 	mov bx, 0			;; O ID do dispositivo (APM BIOS)
-	mov cx, 0102h		;; Selecionar APM versão 1.2
-						;; A funcionalidade está presente após a versão 1.2
-	int 15h				;; Chamar interrupção APM
+	mov cx, 0102h		;; Selecionar APM versï¿½o 1.2
+						;; A funcionalidade estï¿½ presente apï¿½s a versï¿½o 1.2
+	int 15h				;; Chamar interrupï¿½ï¿½o APM
 	
 	jc APM_falha_selecionar_versao
 
-	mov ax, 5307h		;; Função de definir estado
+	mov ax, 5307h		;; Funï¿½ï¿½o de definir estado
 	mov cx, 0003h		;; Estado de desligar
 	mov bx, 0001h		;; Todos os dispositivos tem ID 1
-	int 15h				;; Chamar interrupção APM
+	int 15h				;; Chamar interrupï¿½ï¿½o APM
 	
-;; Caso o sistema não desligue de forma apropriada, serão retornados códigos de erro ao
-;; programa que chamou a função de desligamento.
+;; Caso o sistema nï¿½o desligue de forma apropriada, serï¿½o retornados cï¿½digos de erro ao
+;; programa que chamou a funï¿½ï¿½o de desligamento.
 	
-APM_falha_comando: ;; Chamado caso o comando de desligamento (código 3) não seja executado
+APM_falha_comando: ;; Chamado caso o comando de desligamento (cï¿½digo 3) nï¿½o seja executado
 
 	mov ax, 3
 	jmp APM_desligamento_ok
 
-APM_falha_instalacao: ;; Chamado caso ocorra falha na instalação
+APM_falha_instalacao: ;; Chamado caso ocorra falha na instalaï¿½ï¿½o
 
 	mov ax, 0
 	jmp APM_desligamento_ok
 	
-APM_falha_conexao: ;; Chamado caso ocorra falha na conexão de interface de Modo Real
+APM_falha_conexao: ;; Chamado caso ocorra falha na conexï¿½o de interface de Modo Real
 
 	mov ax, 1
 	jmp APM_desligamento_ok
 	
-APM_falha_selecionar_versao: ;; Chamado quando a versão APM é inferior a 1.2
+APM_falha_selecionar_versao: ;; Chamado quando a versï¿½o APM ï¿½ inferior a 1.2
 
 	mov ax, 2
 	
-APM_desligamento_ok: ;; Retorna a função que a chamou
+APM_desligamento_ok: ;; Retorna a funï¿½ï¿½o que a chamou
 
 	pop cx
 	pop bx

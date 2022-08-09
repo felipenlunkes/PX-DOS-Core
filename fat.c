@@ -4,33 +4,53 @@
 /*                                                                   */
 /*                                                                   */
 /*   #$$%%@!#$%                                                      */
-/*   !!@#!$!$!$         Sistema Operacional PX-DOS ®                 */
+/*   !!@#!$!$!$         Sistema Operacional PX-DOS                   */
 /*   !@@#   #$%                                                      */
 /*   #$$%   &*$                                                      */
 /*   $#%@   @#&                                                      */
 /*   #%$&*(@*@&                                                      */
-/*   @#$@$#@$%$     © 2013-2016 Felipe Miguel Nery Lunkes            */
+/*   @#$@$#@$%$       2013-2022 (c) Felipe Miguel Nery Lunkes        */
 /*   $%&*                Todos os direitos reservados                */
 /*   @#&*                                                            */
-/*   @&*%                                                            */
-/*   #&*@                                                            */
+/*   @&*%       Esse software se baseia em cÃ³digos disponÃ­veis       */
+/*   #&*@                     em domÃ­nio pÃºblico                     */
 /*                                                                   */
 /*                                                                   */
-/* O PX-DOS ® é marca registrada de Felipe Miguel Nery Lunkes no     */
-/* Brasil. © 2013-2016 Felipe Miguel Nery Lunkes. Todos os direitos  */
-/* reservados. A reprodução total ou parcial, de quaisquer trechos   */
-/* do código aqui presente é expressamente probida, sendo passível   */
-/* de punição legal severa.                                          */
-/*                                                                   */
-/* Copyright © 2013-2016 Felipe Miguel Nery Lunkes                   */
-/* Todos os direitos reservados.                                     */
-/*                                                                   */
-/*********************************************************************/ 
-//
+/*********************************************************************/
+/*
 
-#ifdef PXLOADER // Caso o módulo seja usado pela PXLoader, apenas as funções extremamente
-                // necessárias serão incluídas, como iniciar o sistema de arquivos,
-				// abrir o arquivo do Kernel, lê-lo e o executá-lo.
+Copyright (c) 2013-2022, Felipe Miguel Nery Lunkes
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#ifdef PXLOADER // Caso o mï¿½dulo seja usado pela PXLoader, apenas as funï¿½ï¿½es extremamente
+                // necessï¿½rias serï¿½o incluï¿½das, como iniciar o sistema de arquivos,
+				// abrir o arquivo do Kernel, lï¿½-lo e o executï¿½-lo.
 
 
 #include <string.h>
@@ -67,7 +87,7 @@ static void lerlogicofat(FAT *fat, long setor, void *buf);
 
 /*
 
-Função "padraofat" - Padroniza os valores a serem utilizados
+Funï¿½ï¿½o "padraofat" - Padroniza os valores a serem utilizados
 
 */
  
@@ -89,7 +109,7 @@ void padraofat(FAT *fat)
 
 /*
  
-Função "IniciarFat" - Inicializa o FAT
+Funï¿½ï¿½o "IniciarFat" - Inicializa o FAT
 
 */
  
@@ -169,7 +189,7 @@ void IniciarFat(FAT *fat,
 
 /*
 
-Função "TerminarFat" - Finaliza a estrutura do Sistema de Arquivos
+Funï¿½ï¿½o "TerminarFat" - Finaliza a estrutura do Sistema de Arquivos
 
 */ 
 
@@ -284,7 +304,7 @@ int abrirarquivofat(FAT *fat, const char *arquivo_nome, ARQUIVOFAT *arquivofat)
 
 /*
 
-Função "lerarquivofat" - Leitura em um arquivo já aberto
+Funï¿½ï¿½o "lerarquivofat" - Leitura em um arquivo jï¿½ aberto
 
 */
  
@@ -384,7 +404,7 @@ tamanho_t lerarquivofat(FAT *fat, ARQUIVOFAT *arquivofat, void *buf, tamanho_t t
 
 /*
 
-Função "inicioclusterfat" - Obtêm o nome e o cluster de início
+Funï¿½ï¿½o "inicioclusterfat" - Obtï¿½m o nome e o cluster de inï¿½cio
 
 */
 
@@ -421,19 +441,19 @@ static void inicioclusterfat(FAT *fat, const char *arquivo_nome, ARQUIVOFAT *arq
 
 /*
 
-Função "novaprocurafat" - Obtêm o próximo setor do arquivo a ser acessado
+Funï¿½ï¿½o "novaprocurafat" - Obtï¿½m o prï¿½ximo setor do arquivo a ser acessado
  
  * Entradas:
  * fat - ponteiro para o objeto Fat utilizado
  * *irpara - o bit de nome para procurar o arquivo
  * 
- * Saídas:
+ * Saï¿½das:
  * *irpara - O bit com o nome pra procurar mais tarde
- * procurar - porção do nome encontrado no diretório root
+ * procurar - porï¿½ï¿½o do nome encontrado no diretï¿½rio root
  *
  * ex: caso o nome seja \FELIPE\SHEYLA\JOAO.TXT e
- * *irpara aponte para SHEYLA... a procura será por
- * "SHEYLA            " e depois *irpara apontará para "JOAO...".
+ * *irpara aponte para SHEYLA... a procura serï¿½ por
+ * "SHEYLA            " e depois *irpara apontarï¿½ para "JOAO...".
  
  */
 
@@ -544,7 +564,7 @@ static void novaprocurafat(FAT *fat, char *procurar, const char **irpara, int *u
 /*****************************************************************************************/
 
 /*
-Função "procuraprincipalfat" - Procura pela entrada no diretório root do disco
+Funï¿½ï¿½o "procuraprincipalfat" - Procura pela entrada no diretï¿½rio root do disco
 
 */
  
@@ -561,7 +581,7 @@ static void procuraprincipalfat(FAT *fat, char *procurar, ARQUIVOFAT *arquivofat
 
 /*
 
-Função "procurardirfat" - Procura no diretório o arquivo
+Funï¿½ï¿½o "procurardirfat" - Procura no diretï¿½rio o arquivo
 
 */
  
@@ -577,7 +597,7 @@ static void procurardirfat(FAT *fat, char *procurar, ARQUIVOFAT *arquivofat)
                        InicioCluster, 
                        fat->setores_por_cluster);
 					   
-    while (arquivofat->cluster == 0)    /* Não encontrado. Processo não terminado */
+    while (arquivofat->cluster == 0)    /* Nï¿½o encontrado. Processo nï¿½o terminado */
     {
         if (fimclusterfat(fat, proximoCluster))
         {
@@ -606,7 +626,7 @@ static void procurardirfat(FAT *fat, char *procurar, ARQUIVOFAT *arquivofat)
 
 /*
 
-Função "analisarclusterfat" - Obtêm o número do cluster e calcula o início 
+Funï¿½ï¿½o "analisarclusterfat" - Obtï¿½m o nï¿½mero do cluster e calcula o inï¿½cio 
        do cluster na cadeia
 	   
 */
@@ -676,7 +696,7 @@ static void analisarclusterfat(FAT *fat,
 
 /*
 
-Função "procurarsetorfat" - Procura por um setor específico
+Funï¿½ï¿½o "procurarsetorfat" - Procura por um setor especï¿½fico
 
 */
 
@@ -734,7 +754,7 @@ static void procurarsetorfat(FAT *fat,
 
 /*
 
-Função "lerlogicofat" - Lê um setor lógico do disco
+Funï¿½ï¿½o "lerlogicofat" - Lï¿½ um setor lï¿½gico do disco
 
 */
  
@@ -748,8 +768,8 @@ static void lerlogicofat(FAT *fat, long setor, void *buf)
 }
 
 
-#else // Caso o módulo seja usado pelo Kernel do PX-DOS, todas as funções de manipulação
-      // do sistema de arquivos devem ser incluídas
+#else // Caso o mï¿½dulo seja usado pelo Kernel do PX-DOS, todas as funï¿½ï¿½es de manipulaï¿½ï¿½o
+      // do sistema de arquivos devem ser incluï¿½das
 
 
 #include <string.h>
@@ -805,7 +825,7 @@ static void ZerarClusterfat(FAT *fat, unsigned int cluster);
 
 /*
 
-Função "padraofat" - Inicia o sistema de arquivos diante do sistema
+Funï¿½ï¿½o "padraofat" - Inicia o sistema de arquivos diante do sistema
  
 */
 
@@ -826,7 +846,7 @@ void padraofat(FAT *fat)
 
 /*
 
-Função "IniciarFat" - Inicializa os manipuladores de arquivo
+Funï¿½ï¿½o "IniciarFat" - Inicializa os manipuladores de arquivo
  
 */
 
@@ -912,7 +932,7 @@ void IniciarFat(FAT *fat,
 
 /*
 
-Função "TerminarFat" - Finaliza o manipulador de arquivos
+Funï¿½ï¿½o "TerminarFat" - Finaliza o manipulador de arquivos
  
 */
 
@@ -927,8 +947,8 @@ void TerminarFat(FAT *fat)
 
 /*
 
-Função "fimclusterfat" - Determina quando um cluster indica outro cluster
-        para a continuação do arquivo ou que o arquivo terminou
+Funï¿½ï¿½o "fimclusterfat" - Determina quando um cluster indica outro cluster
+        para a continuaï¿½ï¿½o do arquivo ou que o arquivo terminou
  
 */
 
@@ -966,7 +986,7 @@ static int fimclusterfat(FAT *fat, unsigned int cluster)
 
 /*
 
-Função "criararquivofat" - Cria um arquivo, adicionando seu índice na tabela
+Funï¿½ï¿½o "criararquivofat" - Cria um arquivo, adicionando seu ï¿½ndice na tabela
 
 */
 
@@ -1116,7 +1136,7 @@ int AbrirArquivoFat(FAT *fat, const char *nome_arquivo_fat, ARQUIVOFAT *arquivo_
 
 /*
 
-Função "LerArquivoFat" - Ler de um arquivo já aberto pelo sistema
+Funï¿½ï¿½o "LerArquivoFat" - Ler de um arquivo jï¿½ aberto pelo sistema
  
 */
 
@@ -1135,7 +1155,7 @@ tamanho_t LerArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, tamanho_t 
 
         if (fimclusterfat(fat, arquivo_FAT->ProximoCluster) && !arquivo_FAT->dir)
         {
-            /* Último cluster */
+            /* ï¿½ltimo cluster */
 			
             if ((arquivo_FAT->UltimosSetores == 0) && (arquivo_FAT->UltimosBytes == 0))
             {
@@ -1145,7 +1165,7 @@ tamanho_t LerArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, tamanho_t 
 			
             else
             {
-                /* Reduzir os setores disponíveis */
+                /* Reduzir os setores disponï¿½veis */
 				
                 SetoresDisponiveis = arquivo_FAT->UltimosSetores + 1;
             }
@@ -1233,15 +1253,15 @@ tamanho_t LerArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, tamanho_t 
 
 /*
 
-Função "EscreverArquivoFat" - Escrever em um arquivo já aberto
+Funï¿½ï¿½o "EscreverArquivoFat" - Escrever em um arquivo jï¿½ aberto
  
 */
 
 tamanho_t EscreverArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, tamanho_t tamanho_buffer)
 {
     static unsigned char buffer_contado[Numero_Maximo_Setores];
-    tamanho_t bytes_disponiveis_no_setor; /* bytes disponíveis no setor */
-    tamanho_t tamanho_temporario; /* tamanho temporário */
+    tamanho_t bytes_disponiveis_no_setor; /* bytes disponï¿½veis no setor */
+    tamanho_t tamanho_temporario; /* tamanho temporï¿½rio */
     tamanho_t pronto; 
 
    
@@ -1313,7 +1333,7 @@ tamanho_t EscreverArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, taman
 							
             arquivo_FAT->ParaSetor++;
 
-            /* Ir para um próximo cluster quando pronto */
+            /* Ir para um prï¿½ximo cluster quando pronto */
 			
             if (arquivo_FAT->ParaSetor == fat->setores_por_cluster)
             {
@@ -1367,8 +1387,8 @@ tamanho_t EscreverArquivoFat(FAT *fat, ARQUIVOFAT *arquivo_FAT, void *buf, taman
 
 /*
 
-Função "inicioclusterfat" - obtêm o nome e retorna o primeiro cluster e iguala
-                            naoencontrado a quando não encontrado
+Funï¿½ï¿½o "inicioclusterfat" - obtï¿½m o nome e retorna o primeiro cluster e iguala
+                            naoencontrado a quando nï¿½o encontrado
  
 */
 
@@ -1405,19 +1425,19 @@ static void inicioclusterfat(FAT *fat, const char *nome_arquivo_fat)
 
 /*
 
-Função "novaprocurafat" - Obtêm o próximo setor do arquivo a ser acessado
+Funï¿½ï¿½o "novaprocurafat" - Obtï¿½m o prï¿½ximo setor do arquivo a ser acessado
  
  * Entradas:
  * fat - ponteiro para o objeto Fat utilizado
  * *irpara - o bit de nome para procurar o arquivo
  * 
- * Saídas:
+ * Saï¿½das:
  * *irpara - O bit com o nome pra procurar mais tarde
- * procurar - porção do nome encontrado no diretório root
+ * procurar - porï¿½ï¿½o do nome encontrado no diretï¿½rio root
  *
  * ex: caso o nome seja \FELIPE\SHEYLA\JOAO.TXT e
- * *irpara aponte para SHEYLA... a procura será por
- * "SHEYLA            " e depois *irpara apontará para "JOAO...".
+ * *irpara aponte para SHEYLA... a procura serï¿½ por
+ * "SHEYLA            " e depois *irpara apontarï¿½ para "JOAO...".
  
  */
 
@@ -1555,7 +1575,7 @@ static void PosicaoFat(FAT *fat, const char *nome_arquivo)
 
 /*
 
-Função "procuraprincipalfat" - Procura pela entrada no diretório root do disco
+Funï¿½ï¿½o "procuraprincipalfat" - Procura pela entrada no diretï¿½rio root do disco
  
 */
  
@@ -1573,7 +1593,7 @@ static void procuraprincipalfat(FAT *fat, char *pesquisar)
 
 /*
 
-Função "procurardirfat" - Procura no diretório o arquivo
+Funï¿½ï¿½o "procurardirfat" - Procura no diretï¿½rio o arquivo
  
 */
 
@@ -1589,7 +1609,7 @@ static void procuradirfat(FAT *fat, char *pesquisar)
                        InicioSetor,
                        fat->setores_por_cluster);
 					   
-    while (fat->clustercorrente == 0)    /* Não encontrado mas não é o fim */
+    while (fat->clustercorrente == 0)    /* Nï¿½o encontrado mas nï¿½o ï¿½ o fim */
     {
         if (fimclusterfat(fat, ProximoCluster))
         {
@@ -1618,7 +1638,7 @@ static void procuradirfat(FAT *fat, char *pesquisar)
 
 /*
 
-Função "atualizarraizfat" - atualiza o diretório raiz quando um novo arquivo aparecer
+Funï¿½ï¿½o "atualizarraizfat" - atualiza o diretï¿½rio raiz quando um novo arquivo aparecer
 
 */
 
@@ -1634,7 +1654,7 @@ static void atualizarraizfat(FAT *fat, char *pesquisar, ARQUIVOFAT *arquivo_FAT)
 
 /*
 
-Função "analisarclusterfat" - Obtêm o número do cluster e calcula o início
+Funï¿½ï¿½o "analisarclusterfat" - Obtï¿½m o nï¿½mero do cluster e calcula o inï¿½cio
                               do cluster na cadeia
  
  */
@@ -1884,7 +1904,7 @@ static void atualizarsetordirfat(FAT *fat,
 
 /*
 
-Função "lerlogicofat" - Lê um setor lógico do disco
+Funï¿½ï¿½o "lerlogicofat" - Lï¿½ um setor lï¿½gico do disco
  
 */
 
@@ -1901,7 +1921,7 @@ static void lerlogicofat(FAT *fat, long setor, void *buf)
 
 /*
 
-Função "escreverlogicofat" - Escrever em um setor no disco
+Funï¿½ï¿½o "escreverlogicofat" - Escrever em um setor no disco
  
 */
 
@@ -1917,7 +1937,7 @@ static void escreverlogicofat(FAT *fat, long setor, void *buf)
 
 /* 
 
-Função "marcarclusterfat" - marca um cluster
+Funï¿½ï¿½o "marcarclusterfat" - marca um cluster
 
 */
 
@@ -1948,7 +1968,7 @@ static void marcarclusterfat(FAT *fat, unsigned int cluster)
 
 /* 
 
-Função "encontrarclusterlivre" - obter próximo cluster livre 
+Funï¿½ï¿½o "encontrarclusterlivre" - obter prï¿½ximo cluster livre 
 
 */
 
@@ -2003,7 +2023,7 @@ static unsigned int encontrarclusterlivre(FAT *fat)
 
 /* 
 
-Função "cadeiafat" - ir a novo cluster 
+Funï¿½ï¿½o "cadeiafat" - ir a novo cluster 
 
 */
 
@@ -2054,7 +2074,7 @@ static void cadeiafat(FAT *fat, ARQUIVOFAT *arquivo_FAT)
 
 /*
 
-Função "DeletarArquivoFat" - Deletar um arquivo o procurando e 
+Funï¿½ï¿½o "DeletarArquivoFat" - Deletar um arquivo o procurando e 
                              zerando todos os seus setores
 							 
 */
@@ -2096,7 +2116,7 @@ int DeletarArquivoFat(FAT *fat,const char *nome_arquivo_fat)
 
 /*
 
-Função "RenomearArquivoFat" - Renomear um arquivo do antigo para o novo nome
+Funï¿½ï¿½o "RenomearArquivoFat" - Renomear um arquivo do antigo para o novo nome
  
 */
 
@@ -2213,7 +2233,7 @@ int RenomearArquivoFat(FAT *fat,const char *antigo,const char *novo)
 
 /*
 
-Função "ObterAtributosFat" - Obtêm os atributos de um arquivo 
+Funï¿½ï¿½o "ObterAtributosFat" - Obtï¿½m os atributos de um arquivo 
 
 */
 
@@ -2246,7 +2266,7 @@ int ObterAtributosFat(FAT *fat,const char *nome_arquivo_fat,int *atributo)
 
 /*
 
-Função "ZerarClusterfat" - Deleta um arquivo zerando o cluster por completo
+Funï¿½ï¿½o "ZerarClusterfat" - Deleta um arquivo zerando o cluster por completo
 
 */
  

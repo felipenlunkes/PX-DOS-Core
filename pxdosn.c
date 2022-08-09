@@ -4,32 +4,55 @@
 /*                                                                   */
 /*                                                                   */
 /*   #$$%%@!#$%                                                      */
-/*   !!@#!$!$!$         Sistema Operacional PX-DOS ®                 */
+/*   !!@#!$!$!$         Sistema Operacional PX-DOS                   */
 /*   !@@#   #$%                                                      */
 /*   #$$%   &*$                                                      */
 /*   $#%@   @#&                                                      */
 /*   #%$&*(@*@&                                                      */
-/*   @#$@$#@$%$     © 2013-2016 Felipe Miguel Nery Lunkes            */
+/*   @#$@$#@$%$       2013-2022 (c) Felipe Miguel Nery Lunkes        */
 /*   $%&*                Todos os direitos reservados                */
 /*   @#&*                                                            */
-/*   @&*%                                                            */
-/*   #&*@                                                            */
+/*   @&*%       Esse software se baseia em cÃ³digos disponÃ­veis       */
+/*   #&*@                     em domÃ­nio pÃºblico                     */
 /*                                                                   */
 /*                                                                   */
-/* O PX-DOS ® é marca registrada de Felipe Miguel Nery Lunkes no     */
-/* Brasil. © 2013-2016 Felipe Miguel Nery Lunkes. Todos os direitos  */
-/* reservados. A reprodução total ou parcial, de quaisquer trechos   */
-/* do código aqui presente é expressamente probida, sendo passível   */
-/* de punição legal severa.                                          */
-/*                                                                   */
-/* Copyright © 2013-2016 Felipe Miguel Nery Lunkes                   */
-/* Todos os direitos reservados.                                     */
-/*                                                                   */
+/*********************************************************************/
+/*
+
+Copyright (c) 2013-2022, Felipe Miguel Nery Lunkes
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice,
+  this list of conditions and the following disclaimer in the documentation
+  and/or other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 /*********************************************************************/ 
 /*                                                                   */
-/*         Núcleo (Kernel) do Sistema Operacional PX-DOS ®           */
+/*         Nï¿½cleo (Kernel) do Sistema Operacional PX-DOS ï¿½           */
 /*                                                                   */
-/*              © 2013-2016 Felipe Miguel Nery Lunkes                */
+/*              ï¿½ 2013-2016 Felipe Miguel Nery Lunkes                */
 /*                  Todos os direitos reservados.                    */
 /*                                                                   */
 /*********************************************************************/
@@ -51,7 +74,7 @@
 
 //*****************************************************************
 
-// Definições do sistema
+// Definiï¿½ï¿½es do sistema
 
 #define NUM_PASTAS_MAX 120
 
@@ -67,22 +90,22 @@
 
 #define NUM_ARQUIVOS_MAX 40
 
-#define EnderecoAbsoluto(x) ((void *)(x)) // Obter um ponteiro que será convertido para
-                                          // um endereço que pode ser usado pelo sistema
+#define EnderecoAbsoluto(x) ((void *)(x)) // Obter um ponteiro que serï¿½ convertido para
+                                          // um endereï¿½o que pode ser usado pelo sistema
 
 //*****************************************************************
 
-/* Valores das tabelas de partição */
+/* Valores das tabelas de partiï¿½ï¿½o */
 
-// Tabela de partições = TP
+// Tabela de partiï¿½ï¿½es = TP
 
 #define TP_Deslocamento 0x1be 
 #define TP_Tamanho 16 /* Comprimento de cada entrada */
-#define TP_Entradas 4 /* Número máximo de partições em um disco */
+#define TP_Entradas 4 /* Nï¿½mero mï¿½ximo de partiï¿½ï¿½es em um disco */
 #define TP_SISID 4 /* Tamanho do ID do sistema */
 #define TP_FAT12 1 /* FAT 12 ( 12 Bits ) do DOS */
 #define TP_FAT16S 4 /* FAT 16 ( 16 Bits < 32MB ) do DOS  */
-#define TP_DOSE 5 /* Partição DOS extendida */
+#define TP_DOSE 5 /* Partiï¿½ï¿½o DOS extendida */
 #define TP_FAT16B 6 /* FAT 16 ( 16 Bits >= 32MB ) do DOS */
 #define TP_FAT32 0x0b /* FAT 32 ( 32 Bits ) do Windows 95 */
 #define TP_FAT32L 0x0c /* FAT 32 ( 32 Bits ) do Windows 95 LBA */
@@ -91,7 +114,7 @@
 
 //*******************************************************************
 
-// Fim das definições do sistema
+// Fim das definiï¿½ï¿½es do sistema
 
 // Estruturas de dados
 
@@ -269,11 +292,11 @@ static void analisarBpb(INFODisco *discoinfo, unsigned char *bpb);
 int inicioPXDOS(void);
 
 
-static GERMEMORIA gerenciamentomemoria;       // Instância da estrutura herdada
+static GERMEMORIA gerenciamentomemoria;       // Instï¿½ncia da estrutura herdada
 
 /*
 
-Área de Gerenciamento de Memória do Kernel do PX-DOS
+ï¿½rea de Gerenciamento de Memï¿½ria do Kernel do PX-DOS
 
 */
 
@@ -288,7 +311,7 @@ static void gerenciar_memlivre_16_Paginas(GERMEMORIA *gerenciamentomemoria, tama
 
 /*
 
-Variáveis e constantes globais do sistema
+Variï¿½veis e constantes globais do sistema
 
 
 */
@@ -299,7 +322,7 @@ static INFODisco discos[NumeroMaximoDiscos];
 
 static INFODisco InfodoBoot;
 
-static char *dominio_drivers[]= { // Tabela de Domínio dos Drivers
+static char *dominio_drivers[]= { // Tabela de Domï¿½nio dos Drivers
 
 "A: - C:    ",
 "RELOGIO    ",
@@ -331,7 +354,7 @@ static int lba;
 
 static long memoria_utilizada_global=0;
 
-static unsigned long setorParticao; /* Offset dos setores da partição */
+static unsigned long setorParticao; /* Offset dos setores da partiï¿½ï¿½o */
 
 static int atrib;
 
@@ -365,11 +388,11 @@ static void *exec_PXDOSinicio;
 
 static void *Nivel_API_C_Execucao;
 
-static int VERSAOPXDOS = 0; // Versão do Sistema
+static int VERSAOPXDOS = 0; // Versï¿½o do Sistema
 
-static int SUBVERSAOPXDOS = 9; // Subversão do Sistema
+static int SUBVERSAOPXDOS = 9; // Subversï¿½o do Sistema
 
-static int REVISAOPXDOS = 0; // Revisão do Sistema
+static int REVISAOPXDOS = 0; // Revisï¿½o do Sistema
 
 static int driversCarregados = 0;
 
@@ -377,24 +400,24 @@ static int retornoErro = 0;
 
 /*
 
-Agora, variáveis e definições a serem utilizadas na implementação
-APM do PX-DOS® (PXAPM)
+Agora, variï¿½veis e definiï¿½ï¿½es a serem utilizadas na implementaï¿½ï¿½o
+APM do PX-DOSï¿½ (PXAPM)
 
 */
 
-static int APM = 0; // Variável que armazena a disponibilidade do recurso.
-                    // Caso 1, o APM está disponível para uso.
+static int APM = 0; // Variï¿½vel que armazena a disponibilidade do recurso.
+                    // Caso 1, o APM estï¿½ disponï¿½vel para uso.
 					
-static int FuncaoAPM = 0; // Armazena a função a ser executada pela 
-                          // implementação (0 - 3).
+static int FuncaoAPM = 0; // Armazena a funï¿½ï¿½o a ser executada pela 
+                          // implementaï¿½ï¿½o (0 - 3).
 
-static int CodigoErroAPM = 0; // Armazena possíveis códigos de erro
-                              // gerados após chamadas a funções
-                              // da implementação APM.							  
+static int CodigoErroAPM = 0; // Armazena possï¿½veis cï¿½digos de erro
+                              // gerados apï¿½s chamadas a funï¿½ï¿½es
+                              // da implementaï¿½ï¿½o APM.							  
 
 /*
 
-Início do Kernel do PX-DOS
+Inï¿½cio do Kernel do PX-DOS
 
 
 */
@@ -407,9 +430,9 @@ int EntradaKernel(void)
  
 /*
 
-Se o sistema não conseguir encontrar um Interpretador de Comandos valido do PX-DOS
-no disco do sistema, ele retornará a esta função e exibirá a mensagem de erro fatal.
-Sem um Interpretador de Comandos o sistema não consegue funcionar da maneira apropriada.
+Se o sistema nï¿½o conseguir encontrar um Interpretador de Comandos valido do PX-DOS
+no disco do sistema, ele retornarï¿½ a esta funï¿½ï¿½o e exibirï¿½ a mensagem de erro fatal.
+Sem um Interpretador de Comandos o sistema nï¿½o consegue funcionar da maneira apropriada.
 
 
 */ 
@@ -430,10 +453,10 @@ Sem um Interpretador de Comandos o sistema não consegue funcionar da maneira apr
 
 /*
 
-Método de início do Kernel do PX-DOS
+Mï¿½todo de inï¿½cio do Kernel do PX-DOS
 
-- Instala as interrupções de software ( Int 21h, Int 20h e a proprietária, Int 90h )
-- Chama o restante do sistema ( Funções de inicialização dos componentes de Hardware )
+- Instala as interrupï¿½ï¿½es de software ( Int 21h, Int 20h e a proprietï¿½ria, Int 90h )
+- Chama o restante do sistema ( Funï¿½ï¿½es de inicializaï¿½ï¿½o dos componentes de Hardware )
 
 */
 
@@ -445,7 +468,7 @@ void pxdosInit(void)
     int numdrive;
     char *m;
 
-    instalarInt();                 // Instala as interrupções do PX-DOS
+    instalarInt();                 // Instala as interrupï¿½ï¿½es do PX-DOS
 	
 
 
@@ -455,7 +478,7 @@ Mensagem de Boas Vindas do PX-DOS
 
 */
 
-// Separado do próximo printf para facilitar a manutenção.
+// Separado do prï¿½ximo printf para facilitar a manutenï¿½ï¿½o.
 
     printf("\n\n\n"); 
 	
@@ -467,7 +490,7 @@ Mensagem de Boas Vindas do PX-DOS
 
 /*
 
-O Bloco de Parâmetros do BIOS fica no endereço absoluto de Boot acrescido do
+O Bloco de Parï¿½metros do BIOS fica no endereï¿½o absoluto de Boot acrescido do
 deslocamento de 11 bytes.
 
 */
@@ -548,7 +571,7 @@ deslocamento de 11 bytes.
 
 /*****************************************************************************************/
 
-/* Para todas as partições, discos, partições extendidas e número do drive */
+/* Para todas as partiï¿½ï¿½es, discos, partiï¿½ï¿½es extendidas e nï¿½mero do drive */
    
 static void iniciardiscos(void)
 {
@@ -587,7 +610,7 @@ static void escaniarparticoes(int drive)
     int x;
     int IDdosistema;
 
-    /* Ler tabela de partições */
+    /* Ler tabela de partiï¿½ï¿½es */
 	
     rc = lerabs(buf, setores, drive, trilha, cabeca, setor);
 	
@@ -595,7 +618,7 @@ static void escaniarparticoes(int drive)
     {        
         setorParticao = 0;
 		
-        /* Para qualquer partição */
+        /* Para qualquer partiï¿½ï¿½o */
 		
         for (x = 0; x < TP_Entradas; x++)
         {
@@ -714,14 +737,14 @@ static void processarparticao(int drive, unsigned char *parametro_disco)
     
     /* 
 	
-	Alguns setores ocultos não aparecem quando a partição é formatada como FAT12. 
+	Alguns setores ocultos nï¿½o aparecem quando a partiï¿½ï¿½o ï¿½ formatada como FAT12. 
 	Por isso, usamos a quantidade computada.
 
 	*/
 	
     discos[ultimodrive].oculto = setor;
     
-    /* Caso as partições e setores ocultos coincidam, este é o disco de boot */
+    /* Caso as partiï¿½ï¿½es e setores ocultos coincidam, este ï¿½ o disco de boot */
 	
     if ((drive == drivebootfisico)
         && (discos[ultimodrive].oculto == InfodoBoot.oculto))
@@ -878,13 +901,13 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
     {
         case 0x01:
 		
-		if (regsentrada->x.bx == 0x01){  // Exibe apenas a versão do Sistema
+		if (regsentrada->x.bx == 0x01){  // Exibe apenas a versï¿½o do Sistema
 		
            printf("PX-DOS versao %s", VERPXDOS);
 		   
 		   }
 		   
-		if (regsentrada->x.bx == 0x02){ // Exibe uma mensagem completa da versão do Sistema
+		if (regsentrada->x.bx == 0x02){ // Exibe uma mensagem completa da versï¿½o do Sistema
            
 		   printf("\nSistema Operacional PX-DOS %s", VERPXDOS);
 		   printf("\n\nCopyright (C) 2016 Felipe Miguel Nery Lunkes\n");
@@ -892,7 +915,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		   
 		   }
 		   
-		if (regsentrada->x.bx == 0x03){ // Retorna nos registradores a versão
+		if (regsentrada->x.bx == 0x03){ // Retorna nos registradores a versï¿½o
 
          regssaida->x.ax=VERSAOPXDOS;
          regssaida->x.bx=SUBVERSAOPXDOS;	
@@ -904,11 +927,11 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 
         /*
 
-         A versão é retornada da seguinte forma:
+         A versï¿½o ï¿½ retornada da seguinte forma:
 
-        AX retorna o número da versão de lançamento.
-        BX retorna o número do lançamento.		
-		CX retorna o número da revisão final do lançamento.
+        AX retorna o nï¿½mero da versï¿½o de lanï¿½amento.
+        BX retorna o nï¿½mero do lanï¿½amento.		
+		CX retorna o nï¿½mero da revisï¿½o final do lanï¿½amento.
 
         */
 
@@ -919,7 +942,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		case 0x02:
 		
 
-		   PX_DOSTermSemRC(); // Finaliza o programa em execução
+		   PX_DOSTermSemRC(); // Finaliza o programa em execuï¿½ï¿½o
 		   
 		   
            break;		
@@ -928,7 +951,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 
          PX_DOSImprimirString(MK_FP(sregs->ds, regsentrada->x.dx));	
 		 
-		 // Exibe o que está em DX, que deve terminar em '$'
+		 // Exibe o que estï¿½ em DX, que deve terminar em '$'
     
 	
 	       break;
@@ -939,9 +962,9 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 
            break;	
 
-        case 0x05: // Função para finalizar a execução de um Driver
+        case 0x05: // Funï¿½ï¿½o para finalizar a execuï¿½ï¿½o de um Driver
 
-		 PX_DOSTermSemRC(); // Finaliza o programa em execução
+		 PX_DOSTermSemRC(); // Finaliza o programa em execuï¿½ï¿½o
 		 
 		 retornoErro = regsentrada->x.ax; // Salva o retorno de erros, se informado
 		 
@@ -949,7 +972,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		 
            break;	
 		   
-	    case 0x06: // Função para definir uma API - Retorno Nulo
+	    case 0x06: // Funï¿½ï¿½o para definir uma API - Retorno Nulo
 		
 		 regssaida->x.ax=0;
 		 regssaida->x.bx=0;
@@ -994,7 +1017,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		break;
 		
-		case 0x09: // Interrupção usada pelo Kernel para chamar o carregador
+		case 0x09: // Interrupï¿½ï¿½o usada pelo Kernel para chamar o carregador
 		           // de Drivers
 				   
 		 carregarExe("CRGDRV.SIS", &p, 0);	 
@@ -1012,7 +1035,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		if (regsentrada->x.bx == 2){
 		
-		 regssaida->x.ax = retornoErro; // Retorna o retorno de erro do último Driver
+		 regssaida->x.ax = retornoErro; // Retorna o retorno de erro do ï¿½ltimo Driver
 		
 		}
 		
@@ -1032,7 +1055,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
         }
             break;
 			
-		case 0x12: // Função de retorno de dados
+		case 0x12: // Funï¿½ï¿½o de retorno de dados
 		
 		 procura_tipo = *(int *)&regsentrada->x.bx;
 		
@@ -1040,16 +1063,16 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		if (DRIVER[contar].TipoDriver == procura_tipo){
 		
-		 regssaida->x.cx=DRIVER[contar].NumeroInterrupcao; // Retorna o número da interrupção
-		 regssaida->x.dx=contar; // Retorna a posição na tabela, que pode ser usada 
-		                         // em outras funções
+		 regssaida->x.cx=DRIVER[contar].NumeroInterrupcao; // Retorna o nï¿½mero da interrupï¿½ï¿½o
+		 regssaida->x.dx=contar; // Retorna a posiï¿½ï¿½o na tabela, que pode ser usada 
+		                         // em outras funï¿½ï¿½es
 			/*					 
 		regssaida->x.bx = FP_OFFSET(DRIVER[contar].NomeDriver);
 			
         sregs->es = FP_SEGMENTO(DRIVER[contar].NomeDriver);
 		*/
 		
-		} else { // Caso não encontre
+		} else { // Caso nï¿½o encontre
 		
 		 regssaida->x.bx=0;
 		
@@ -1059,7 +1082,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		break;
 		
-		case 0x13: // Função de retorno de informações do sistema
+		case 0x13: // Funï¿½ï¿½o de retorno de informaï¿½ï¿½es do sistema
 		
 		 regssaida->x.ax=VERSAOPXDOS;
 		 regssaida->x.bx=SUBVERSAOPXDOS;
@@ -1068,7 +1091,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		break;
 		
-		case 0x14: // Função para iniciar uma impressora conectada
+		case 0x14: // Funï¿½ï¿½o para iniciar uma impressora conectada
 		
 		
 		dispositivo = regsentrada->x.dx;
@@ -1077,7 +1100,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		break;
 		
-		case 0x15: // Função para iniciar uma impressora conectada
+		case 0x15: // Funï¿½ï¿½o para iniciar uma impressora conectada
 		
 		
 		dispositivo = regsentrada->x.dx;
@@ -1115,36 +1138,36 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 	
 		break;
 		
-		case 0x17: // Função para desligamento via APM
+		case 0x17: // Funï¿½ï¿½o para desligamento via APM
 		
 		regssaida->x.ax = desligar();
 		
-		// Caso a função retorne, indicando erro em sua execução,
-		// o sistema deverá informar o usuáro, assim como tomar
-		// as medidas necessárias. Cada um dos retornos numéricos
+		// Caso a funï¿½ï¿½o retorne, indicando erro em sua execuï¿½ï¿½o,
+		// o sistema deverï¿½ informar o usuï¿½ro, assim como tomar
+		// as medidas necessï¿½rias. Cada um dos retornos numï¿½ricos
 		// apresentam um significado de erro.
 		
-		if (regssaida->x.ax = 0x00){ // Falha na instalação da
-		                             // implementação APM.
+		if (regssaida->x.ax = 0x00){ // Falha na instalaï¿½ï¿½o da
+		                             // implementaï¿½ï¿½o APM.
 		PXDOS_TelaAzul(16);
 		
 		}
 		
-		if (regssaida->x.ax = 0x01){ // Falha na conexão com a interface
+		if (regssaida->x.ax = 0x01){ // Falha na conexï¿½o com a interface
 		                             // de Modo Real.
 		
 		PXDOS_TelaAzul(17);
 		
 		}
 		
-		if (regssaida->x.ax = 0x02){ // Não existe suporte ao protocolo
-		                             // APM 1.2 necessário.
+		if (regssaida->x.ax = 0x02){ // Nï¿½o existe suporte ao protocolo
+		                             // APM 1.2 necessï¿½rio.
 		
 		PXDOS_TelaAzul(18);
 		
 		}
 		
-		if (regssaida->x.ax = 0x03){ // Erro durante a execução do comando
+		if (regssaida->x.ax = 0x03){ // Erro durante a execuï¿½ï¿½o do comando
 		                             // enviado. Erro desconhecido!
 		
 		PXDOS_TelaAzul(19);
@@ -1156,7 +1179,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		case 0x18:
 		
-		if (regsentrada->x.bx == 0x01) // Função para exibir na tela a relação de executáveis carregados
+		if (regsentrada->x.bx == 0x01) // Funï¿½ï¿½o para exibir na tela a relaï¿½ï¿½o de executï¿½veis carregados
 		{
 		
 		printf("       NOME        TIPO   TAMANHO\n");
@@ -1189,7 +1212,7 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		//****************
 		
-		if (regsentrada->x.bx == 0x02) // Função para retornar a quantidade de memoria utilizada
+		if (regsentrada->x.bx == 0x02) // Funï¿½ï¿½o para retornar a quantidade de memoria utilizada
 		{
 		
 		for (contar=0;contar<10;contar++){
@@ -1216,12 +1239,12 @@ BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
 		
 		break;
 		
-	default:  // Caso nenhuma função válida seja declarada, exibir a mensagem de 
-	          // erro genérica.
+	default:  // Caso nenhuma funï¿½ï¿½o vï¿½lida seja declarada, exibir a mensagem de 
+	          // erro genï¿½rica.
 	
 	     printf("\nInterrupcao PX-DOS %x nao implementada!\n", regsentrada->x.ax);
 	
-	      regssaida->x.ax = 1; // Retornar código de erro 1
+	      regssaida->x.ax = 1; // Retornar cï¿½digo de erro 1
 	
 	break;
 	
@@ -1241,7 +1264,7 @@ static void manipular_ctrlc(union REGS *regsentrada, union REGS *regssaida, stru
 printf("\n\nCtrl-C pressionado.\n");
 printf("O aplicativo atualmente aberto foi finalizado.\n\n");
 
-PX_DOSTermSemRC();; // Finaliza o programa em execução
+PX_DOSTermSemRC();; // Finaliza o programa em execuï¿½ï¿½o
 
 return;
 
@@ -1253,11 +1276,11 @@ static void manipular_divisaoporzero(union REGS *regsentrada, union REGS *regssa
 {
 
 
-printf("\n\nUma divisão por zero ocorreu.\n");
+printf("\n\nUma divisï¿½o por zero ocorreu.\n");
 printf("O programa sera finalizado para evitar a execucao de\n");
 printf("instrucoes invalidas.\n\n");
 
-PX_DOSTermSemRC();; // Finaliza o programa em execução
+PX_DOSTermSemRC();; // Finaliza o programa em execuï¿½ï¿½o
 
 return;
 
@@ -1268,8 +1291,8 @@ return;
 static void manipular_int21h(union REGS *regsentrada, union REGS *regssaida, struct SREGS *sregs)
 {
 
-// Interrupção 21h mantida para a compatibilidade com os aplicativos feitos para outros 
-// sistemas baseados na arquitetura DOS. Nem todas as implementações estão presentes.
+// Interrupï¿½ï¿½o 21h mantida para a compatibilidade com os aplicativos feitos para outros 
+// sistemas baseados na arquitetura DOS. Nem todas as implementaï¿½ï¿½es estï¿½o presentes.
 
     void *p;
     void *q;
@@ -1553,7 +1576,7 @@ static void manipular_int21h(union REGS *regsentrada, union REGS *regssaida, str
 
             /*
 			
-			Por algum motivo, AMEMPXDOS (alocador de memória do PX-DOS) aloca 32 bytes  
+			Por algum motivo, AMEMPXDOS (alocador de memï¿½ria do PX-DOS) aloca 32 bytes  
 			
 			*/
 			
@@ -1671,11 +1694,11 @@ static void manipular_int21h(union REGS *regsentrada, union REGS *regssaida, str
 			
             break;
 
-        /* EMX é a função 0x7f */ 
+        /* EMX ï¿½ a funï¿½ï¿½o 0x7f */ 
 
 /* 
 
-Funções específicas do PX-DOS
+Funï¿½ï¿½es especï¿½ficas do PX-DOS
 
 */	
 	
@@ -1852,8 +1875,8 @@ unsigned int PX_DOSObterVersaodoDOS(void)
     
     /* 
 	
-	Retornar versão do PX-DOS para 4.00, para manter compatibilidade com programas
-    antigos desenvolvidos para versões do DOS 4.00
+	Retornar versï¿½o do PX-DOS para 4.00, para manter compatibilidade com programas
+    antigos desenvolvidos para versï¿½es do DOS 4.00
 	  
 	*/
 	
@@ -2228,7 +2251,7 @@ int PX_DOSObterInformacoesdoDispositivo(int manuseador, unsigned int *devinfo)
         else if ((manuseador == 1) || (manuseador == 2))
         {
 		
-            *devinfo |= (1 << 1); // Dispositivo de saída
+            *devinfo |= (1 << 1); // Dispositivo de saï¿½da
 			
         }
 		
@@ -2434,7 +2457,7 @@ void PX_DOSTerminar(int rc)
 
     chamareignorar(rc);
 	
-	// Alteração direta do registro
+	// Alteraï¿½ï¿½o direta do registro
 	
 	removerAPP(contAPP);
 	
@@ -2471,7 +2494,7 @@ int PX_DOSEncontrarPrimeiro(char *pronto, int atributo)
     
     atrib = atributo;
 	
-    memset(ATD, '\0', 0x15); // Limpar área reservada 
+    memset(ATD, '\0', 0x15); // Limpar ï¿½rea reservada 
 	
     PXDOS_FAZER(pronto);
 	
@@ -2508,7 +2531,7 @@ int PX_DOSEncontrarProximo(void)
 
 /*****************************************************************************************/
 
-// Funções a serem implementadas completamente no futuro
+// Funï¿½ï¿½es a serem implementadas completamente no futuro
 
 static int ObterAtributos(const char *nome_arq,int *atributos)
 {
@@ -3240,10 +3263,10 @@ static void carregarPXConfig(void)
     int conteudo_arquivo_a_ser_lido;
 
     conteudo_arquivo_a_ser_lido = abrirArquivo("PXCONFIG.SIS"); // Neste arquivo podem
-                                                                // constar informações
+                                                                // constar informaï¿½ï¿½es
 	                                                            // de um Driver a ser
 																// carregado ou o Shell
-																// alternativo à ser 
+																// alternativo ï¿½ ser 
 																// utilizado.
 	
     if (conteudo_arquivo_a_ser_lido >= 0)
@@ -3317,15 +3340,15 @@ static void carregarPXConfig(void)
 
 /*
 
-Procedimentos para manipulação da lista de executáveis carregados na memória
+Procedimentos para manipulaï¿½ï¿½o da lista de executï¿½veis carregados na memï¿½ria
 
-Função para:
+Funï¿½ï¿½o para:
  
-  * Adicionar um Aplicativo na lista de execução;
-  * Remover um Aplicativo da lista de execução;
-  * Adicionar um Driver de Dispositivo PX-DOS® na lista de execução;
-  * Remover um Driver de Dispositivo PX-DOS® da lista, removendo-o da memória;
-  * Configurar informações de execução do Driver de Dispositivo PX-DOS® após registro;
+  * Adicionar um Aplicativo na lista de execuï¿½ï¿½o;
+  * Remover um Aplicativo da lista de execuï¿½ï¿½o;
+  * Adicionar um Driver de Dispositivo PX-DOSï¿½ na lista de execuï¿½ï¿½o;
+  * Remover um Driver de Dispositivo PX-DOSï¿½ da lista, removendo-o da memï¿½ria;
+  * Configurar informaï¿½ï¿½es de execuï¿½ï¿½o do Driver de Dispositivo PX-DOSï¿½ apï¿½s registro;
 
 */
 
@@ -3338,7 +3361,7 @@ if (salvar == 1){
 	
 	}
 
-	if (contAPP >= 1 && APPS[contAPP].Carregado == 0) // A posição 1 deve ser a do Shell, primeiro aplicativo carregado
+	if (contAPP >= 1 && APPS[contAPP].Carregado == 0) // A posiï¿½ï¿½o 1 deve ser a do Shell, primeiro aplicativo carregado
 	{ 
 	
 	contAPP--;
@@ -3351,12 +3374,12 @@ if (salvar == 1){
 	
 	}
 	
-	APPS[contAPP].TipoAPP=tipo;              // Tipo de executável (APPX ou MZ)
+	APPS[contAPP].TipoAPP=tipo;              // Tipo de executï¿½vel (APPX ou MZ)
 	APPS[contAPP].ModeloAPP=arquitetura;     // Arquitetura para que o aplicativo foi desenvolvido
-	APPS[contAPP].VersaoAPP=versao;          // Versão mínima do Sistema necessária para a execução
-	APPS[contAPP].SubversaoAPP=subversao;    // Subersão mínima do Sistema necessária para a execução
-	APPS[contAPP].TamanhoAPP=tamanho;        // Tamanho do executável
-	APPS[contAPP].Carregado=carregado;       // Indica o status de carregamento do executável
+	APPS[contAPP].VersaoAPP=versao;          // Versï¿½o mï¿½nima do Sistema necessï¿½ria para a execuï¿½ï¿½o
+	APPS[contAPP].SubversaoAPP=subversao;    // Subersï¿½o mï¿½nima do Sistema necessï¿½ria para a execuï¿½ï¿½o
+	APPS[contAPP].TamanhoAPP=tamanho;        // Tamanho do executï¿½vel
+	APPS[contAPP].Carregado=carregado;       // Indica o status de carregamento do executï¿½vel
 
 }
 
@@ -3366,14 +3389,14 @@ static int registrarDRIVER(char *nomeDriver[11], int numerointerrupcao, int tipo
                            int subversao, int carregado){
 
 
-	DRIVER[contDriver].NumeroInterrupcao=numerointerrupcao; // Define o número da interupção para o registro
+	DRIVER[contDriver].NumeroInterrupcao=numerointerrupcao; // Define o nï¿½mero da interupï¿½ï¿½o para o registro
 	DRIVER[contDriver].TipoDriver=tipo;                     // Define o tipo de Driver para o registro
 	DRIVER[contDriver].ModeloDriver=modelo;                 // Define o modelo de Driver para o registro
-	DRIVER[contDriver].VersaoDriver=versao;                 // Define a versão do Driver para o registro
-	DRIVER[contDriver].SubversaoDriver=subversao;           // Define a subversão do Driver para o registro
+	DRIVER[contDriver].VersaoDriver=versao;                 // Define a versï¿½o do Driver para o registro
+	DRIVER[contDriver].SubversaoDriver=subversao;           // Define a subversï¿½o do Driver para o registro
 	DRIVER[contDriver].Carregado=carregado;                 // Define o Driver como carregado no registro
    
-    memcpy(DRIVER[contDriver].NomeDriver, nomeDriver, 11); // Copia o nome lógico obtido
+    memcpy(DRIVER[contDriver].NomeDriver, nomeDriver, 11); // Copia o nome lï¿½gico obtido
 	                                                                      // do Driver para o registro
 
 
@@ -3410,13 +3433,13 @@ static void configurarDRIVER(int SS, int SP, long tamanho, unsigned char *endere
 
 /*****************************************************************************************/
 
-static void executarPXConfig(void) // Executa as instruções encontradas no PXConfig.SIS
+static void executarPXConfig(void) // Executa as instruï¿½ï¿½es encontradas no PXConfig.SIS
 {
 
     static BLOCO_DE_PARAMETROS p = { 0, "\x2/p\r", NULL, NULL };
     static BLOCO_DE_PARAMETROS parametro_pxconfig = { 0, "\x0\r", NULL, NULL };
 
-	carregarExe("CRGDRV.SIS", &p, 1); // Carrega o módulo de Drivers do PX-DOS
+	carregarExe("CRGDRV.SIS", &p, 1); // Carrega o mï¿½dulo de Drivers do PX-DOS
 	
 //*****************************************************************************
 
@@ -3434,7 +3457,7 @@ static void executarPXConfig(void) // Executa as instruções encontradas no PXCon
 	    
 		//memcpy(APPS[contAPP].NomeAPP, "COMANDO.EPX", 11); // Copia o nome do APP para o registro
 		//APPS[contAPP].Carregado=1;
-        carregarExe("COMANDO.EPX", &p, 1); // Carrega o Shell padrão
+        carregarExe("COMANDO.EPX", &p, 1); // Carrega o Shell padrï¿½o
 		
     }
 	
@@ -3457,11 +3480,11 @@ static void executarPXConfig(void) // Executa as instruções encontradas no PXCon
 /*
 
 
-validarDriver - Verifica a presença da assinatura do PX-DOS no Driver, o
+validarDriver - Verifica a presenï¿½a da assinatura do PX-DOS no Driver, o
 que indica que o driver foi desenvolvido para o PX-DOS. Caso o Driver
-não possua essa assinatura ou apresente uma outra, como MZ, de
-executável .EXE, ele será rejeitado e descarregado da memória.
-Essa assinatura deve estar presente no início do Driver, para 
+nï¿½o possua essa assinatura ou apresente uma outra, como MZ, de
+executï¿½vel .EXE, ele serï¿½ rejeitado e descarregado da memï¿½ria.
+Essa assinatura deve estar presente no inï¿½cio do Driver, para 
 provar a validade do mesmo.
 
 
@@ -3473,35 +3496,35 @@ static void validarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros)
 
 {
 
-   unsigned char primeirobit[20]; // Irá armazenar o cabeçalho do Driver
-   unsigned char nomeDriver[11]; // Irá armazenar o nome lógico do arquivo de Driver
-   int contArquivo; // Lugar onde o arquivo será armazenado em memória
-   int tipoDriver; // Tipo de Driver, dentro das especificações de desenvolvimento
+   unsigned char primeirobit[20]; // Irï¿½ armazenar o cabeï¿½alho do Driver
+   unsigned char nomeDriver[11]; // Irï¿½ armazenar o nome lï¿½gico do arquivo de Driver
+   int contArquivo; // Lugar onde o arquivo serï¿½ armazenado em memï¿½ria
+   int tipoDriver; // Tipo de Driver, dentro das especificaï¿½ï¿½es de desenvolvimento
    static int versaoDriver;
    static int subversaoDriver;
-   int numeroInterrupcao; // Número da interrupção a ser utilizada para contatar
+   int numeroInterrupcao; // Nï¿½mero da interrupï¿½ï¿½o a ser utilizada para contatar
                           // o Driver
 	
    contArquivo = abrirArquivo(driver); // Abre o arquivo indicado
 	
-   if (contArquivo < 0) return; // Se não pôde ser aberto, finalize a operação
+   if (contArquivo < 0) return; // Se nï¿½o pï¿½de ser aberto, finalize a operaï¿½ï¿½o
 	
-   lerArquivo(contArquivo, primeirobit, sizeof primeirobit); // Abre o arquivo e lê
-                                                               // seu início
+   lerArquivo(contArquivo, primeirobit, sizeof primeirobit); // Abre o arquivo e lï¿½
+                                                               // seu inï¿½cio
   
    if (memcmp(primeirobit, "PX", 2) == 0) // Verifica se o arquivo possui a assinatura de 
 	                                       // Driver PX-DOS
     {
 	
-	// Agora informações importantes serão extraídas do cabeçalho do Driver
+	// Agora informaï¿½ï¿½es importantes serï¿½o extraï¿½das do cabeï¿½alho do Driver
 	
-	tipoDriver = *(int *)&primeirobit[2];        // Obtêm o tipo do Driver
-	versaoDriver = *(int *)&primeirobit[15];     // Obtêm a versão do Driver
-	subversaoDriver = *(int *)&primeirobit[17];  // Obtêm a subversão do Driver
-	numeroInterrupcao = *(int *)&primeirobit[4]; // Obtêm o número da interrupção
-	                                             // que deverá ser usada para o contato
-												 // com o Driver já carregado.
-    memcpy(nomeDriver, primeirobit + 6, 11);     // Obtêm o nome lógico do Driver
+	tipoDriver = *(int *)&primeirobit[2];        // Obtï¿½m o tipo do Driver
+	versaoDriver = *(int *)&primeirobit[15];     // Obtï¿½m a versï¿½o do Driver
+	subversaoDriver = *(int *)&primeirobit[17];  // Obtï¿½m a subversï¿½o do Driver
+	numeroInterrupcao = *(int *)&primeirobit[4]; // Obtï¿½m o nï¿½mero da interrupï¿½ï¿½o
+	                                             // que deverï¿½ ser usada para o contato
+												 // com o Driver jï¿½ carregado.
+    memcpy(nomeDriver, primeirobit + 6, 11);     // Obtï¿½m o nome lï¿½gico do Driver
 	
 	if (tipoDriver > 12){
 	
@@ -3511,7 +3534,7 @@ static void validarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros)
 	 
 	 }
 	 
-	 if (tipoDriver == 9){ // Armazena informações sobre subsistemas
+	 if (tipoDriver == 9){ // Armazena informaï¿½ï¿½es sobre subsistemas
 	 
 	 contador_subsistemas+=1;
 	 
@@ -3528,14 +3551,14 @@ static void validarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros)
 	
 	}
 	
-	driversCarregados += 1; // Aumenta o número de Drivers carregados em 1 na lista
+	driversCarregados += 1; // Aumenta o nï¿½mero de Drivers carregados em 1 na lista
 	
 	if (tipoDriver == 8){ // Isso indica que um pedido de carregamento da HAL foi pedido
 	                      // ao Kernel
 	
-	hal_instalada= 1;   // Então, nenhuma outra HAL poderá ser carregada. Essa linha
-	                      // bloqueará adiante o carregamento de outro Driver com o
-						  // código da HAL
+	hal_instalada= 1;   // Entï¿½o, nenhuma outra HAL poderï¿½ ser carregada. Essa linha
+	                      // bloquearï¿½ adiante o carregamento de outro Driver com o
+						  // cï¿½digo da HAL
 						  
 	}
 
@@ -3543,7 +3566,7 @@ static void validarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros)
 	
 	registrarDRIVER(nomeDriver, numeroInterrupcao, tipoDriver, 2, versaoDriver, subversaoDriver, 1);
 	
-	carregarDriver(driver, &blocodeParametros, contDriver); // Inicia a execução do Driver
+	carregarDriver(driver, &blocodeParametros, contDriver); // Inicia a execuï¿½ï¿½o do Driver
 		
     } 
 	
@@ -3562,11 +3585,11 @@ static void validarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros)
  
 /* 
 
-carregarDriver - Após a verificação de compatibilidade, usando a
-assinatura de Driver, o mesmo será carregado e executado.
+carregarDriver - Apï¿½s a verificaï¿½ï¿½o de compatibilidade, usando a
+assinatura de Driver, o mesmo serï¿½ carregado e executado.
 
-O Driver só será executado se cumprir todos os requisítos
-de assinatura e validação.
+O Driver sï¿½ serï¿½ executado se cumprir todos os requisï¿½tos
+de assinatura e validaï¿½ï¿½o.
 
 
 */ 
@@ -3655,12 +3678,12 @@ static void carregarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros,
 		
     }    
 
-    /* Tabela de Informações de Driver (TID)
+    /* Tabela de Informaï¿½ï¿½es de Driver (TID)
 	
-	A Tabela de Informações de Driver (TID) carregará consigo informações pertinentes
-	e blocos em branco que no futuro poderão ser utilizados pelo conjunto de Drivers
-	desenvolvido para o PX-DOS ®. Essas informações dizem respeito a maneira que o
-	Driver irá operar, quais operações executar e informações retornar.
+	A Tabela de Informaï¿½ï¿½es de Driver (TID) carregarï¿½ consigo informaï¿½ï¿½es pertinentes
+	e blocos em branco que no futuro poderï¿½o ser utilizados pelo conjunto de Drivers
+	desenvolvido para o PX-DOS ï¿½. Essas informaï¿½ï¿½es dizem respeito a maneira que o
+	Driver irï¿½ operar, quais operaï¿½ï¿½es executar e informaï¿½ï¿½es retornar.
 	
 	*/    
 	
@@ -3710,7 +3733,7 @@ static void carregarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros,
 	
     ATD = tid + 0x80;
 	
-	configurarDRIVER(ss, sp, TamanhoDriver, EntradaDriver); // Configura informações complementares do Driver
+	configurarDRIVER(ss, sp, TamanhoDriver, EntradaDriver); // Configura informaï¿½ï¿½es complementares do Driver
 	
     ret = chamarcompsp(EntradaDriver, tid, ss, sp);
 	
@@ -3734,17 +3757,17 @@ static void carregarDriver(char *driver, BLOCO_DE_PARAMETROS *blocodeParametros,
 /*****************************************************************************************/
 
 /*
-carregarExe - Carrega um executável dentro da memória e o executa
+carregarExe - Carrega um executï¿½vel dentro da memï¿½ria e o executa
  
- 1. Lê o cabeçalho e os 10 primeiros bytes 
- 2. Aloca espaço para o cabeçalho 
- 3. Carrega o cabeçalho 
- 4. Aloca espaço para variáveis 
- 5. Aloca espaço para o executável 
- 6. Carrega o executável 
+ 1. Lï¿½ o cabeï¿½alho e os 10 primeiros bytes 
+ 2. Aloca espaï¿½o para o cabeï¿½alho 
+ 3. Carrega o cabeï¿½alho 
+ 4. Aloca espaï¿½o para variï¿½veis 
+ 5. Aloca espaï¿½o para o executï¿½vel 
+ 6. Carrega o executï¿½vel 
  7. Concerta o aplicativo usando a tabela  
- 8. Extrai SS + SP do cabeçalho 
- 9. Chama executável
+ 8. Extrai SS + SP do cabeï¿½alho 
+ 9. Chama executï¿½vel
 
  */
 
@@ -3797,14 +3820,14 @@ static void carregarExe(char *prog, BLOCO_DE_PARAMETROS *blocodeParametros, int 
 /***********************/
 	
     if (memcmp(primeirobit, "MZ", 2) == 0) // Verifica se o arquivo possui a assinatura de 
-	                                       // executável DOS
+	                                       // executï¿½vel DOS
     {
 	
 	formato=2; // Formato MZ
 	
-    eExe = 1; // Define que o binário é um executável no formato MZ
+    eExe = 1; // Define que o binï¿½rio ï¿½ um executï¿½vel no formato MZ
 		
-    TamanhoCabecalho = *(unsigned int *)&primeirobit[8]; // Obtêm o tamanho do cabeçalho
+    TamanhoCabecalho = *(unsigned int *)&primeirobit[8]; // Obtï¿½m o tamanho do cabeï¿½alho
 		
     TamanhoCabecalho *= 16; // O multiplica por 6
 		
@@ -3815,34 +3838,34 @@ static void carregarExe(char *prog, BLOCO_DE_PARAMETROS *blocodeParametros, int 
     lerArquivo(contArquivo, cabecalho + sizeof primeirobit, TamanhoCabecalho - sizeof primeirobit);
 
    
-   }   // Fim do reconhecimento e decodificação  do formato "MZ"
+   }   // Fim do reconhecimento e decodificaï¿½ï¿½o  do formato "MZ"
  
 /***********************/
  
    if (memcmp(primeirobit, "APPX", 4) == 0) // Verifica se o arquivo possui a assinatura de
-                                            // executável APPX do PX-DOS
+                                            // executï¿½vel APPX do PX-DOS
     {
     
 	formato=1; // Formato APPX
 	
-	arquiteturaSuportada = *(int *)&primeirobit[4]; // Obtêm a arquitetura de destino
-	versaoMinima = *(int *)&primeirobit[5];         // Obtêm a versão mínima requerida
-	subversaoMinima = *(int *)&primeirobit[7];      // Obtêm a subversão mínima
+	arquiteturaSuportada = *(int *)&primeirobit[4]; // Obtï¿½m a arquitetura de destino
+	versaoMinima = *(int *)&primeirobit[5];         // Obtï¿½m a versï¿½o mï¿½nima requerida
+	subversaoMinima = *(int *)&primeirobit[7];      // Obtï¿½m a subversï¿½o mï¿½nima
 	                                         	    // requerida
-	valorSS = *(int *)&primeirobit[8];              // Obtêm o valor inicial de SS
-    valorSP = *(int *)&primeirobit[10];	            // Obtêm o valor inicial de SP
-	valorIP = *(int *)&primeirobit[12];             // Obtêm o valor inicial de IP
-	tipoPrograma = *(int *)&primeirobit[14];        // Obtêm o tipo do programa
-	offsetPrograma = *(int *)&primeirobit[16];      // Obtêm o offset do programa
-	paginasPrograma = *(int *)&primeirobit[18];     // Obtêm o número de páginas usadas
+	valorSS = *(int *)&primeirobit[8];              // Obtï¿½m o valor inicial de SS
+    valorSP = *(int *)&primeirobit[10];	            // Obtï¿½m o valor inicial de SP
+	valorIP = *(int *)&primeirobit[12];             // Obtï¿½m o valor inicial de IP
+	tipoPrograma = *(int *)&primeirobit[14];        // Obtï¿½m o tipo do programa
+	offsetPrograma = *(int *)&primeirobit[16];      // Obtï¿½m o offset do programa
+	paginasPrograma = *(int *)&primeirobit[18];     // Obtï¿½m o nï¿½mero de pï¿½ginas usadas
 	                                                // pelo programa 	  
-	alocacaoMinima = *(int *)&primeirobit[20];      // Obtêm a alocação mínima
-	alocacaoMaxima = *(int *)&primeirobit[22];      // Obtêm a alocação máxima
+	alocacaoMinima = *(int *)&primeirobit[20];      // Obtï¿½m a alocaï¿½ï¿½o mï¿½nima
+	alocacaoMaxima = *(int *)&primeirobit[22];      // Obtï¿½m a alocaï¿½ï¿½o mï¿½xima
 	
 /*
 
-Agora os dados obtidos do cabeçalho serão verificados para garantir a compatibilidade
-e os requisítos dos sistema exigidos pelo programa no formato APPX
+Agora os dados obtidos do cabeï¿½alho serï¿½o verificados para garantir a compatibilidade
+e os requisï¿½tos dos sistema exigidos pelo programa no formato APPX
 
 */
 
@@ -3864,8 +3887,8 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 	
 	}
 
-	if (tipoPrograma != 144){ // Isso significa que o programa executado não
-	                          // é o módulo principal do pacote. Então, ele não
+	if (tipoPrograma != 144){ // Isso significa que o programa executado nï¿½o
+	                          // ï¿½ o mï¿½dulo principal do pacote. Entï¿½o, ele nï¿½o
 							  // deve ser executado diretamente pelo sistema.
 							  
 	printf("\nDesculpe, mas este arquivo nao parece ser o aplicativo principal do\n");
@@ -3876,8 +3899,8 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 	}
 	
 	if (valorIP != 256) { // Isso significa que o IP foi ajustado apra um valor
-	                      // diferente do suportado. A função de IP personalizado ainda
-						  // entrará em fase de testes em próximas versões.
+	                      // diferente do suportado. A funï¿½ï¿½o de IP personalizado ainda
+						  // entrarï¿½ em fase de testes em prï¿½ximas versï¿½es.
 						  
     printf("\nDesculpe, mas o arquivo solicitado nao e um aplicativo valido para PX-DOS.\n");
     
@@ -3886,7 +3909,7 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 
     }	
 	
-    } // Fim do reconhecimento e decodificação do formato "APPX"
+    } // Fim do reconhecimento e decodificaï¿½ï¿½o do formato "APPX"
    
 /***********************/
 
@@ -3905,7 +3928,7 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
     memcpy(ponteiroAmbiente + 7, prog, tamanhostring(prog) + 1);
 
 
-    if (eExe) // Caso seja um arquivo no formato Executável DOS
+    if (eExe) // Caso seja um arquivo no formato Executï¿½vel DOS
     {
 	
     TamanhoExe = *(unsigned int *)&cabecalho[4];
@@ -3914,7 +3937,7 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
    
    }
    
-    else // Caso seja um executável APPX ou binário puro
+    else // Caso seja um executï¿½vel APPX ou binï¿½rio puro
     {
 	
     TamanhoExe = 0x10000;
@@ -4060,7 +4083,7 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 									 
     }
 	
-    else // Carregar arquivo binário puro (.com)
+    else // Carregar arquivo binï¿½rio puro (.com)
     {
 	
         ss = FP_SEGMENTO(psp);
@@ -4069,8 +4092,8 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 		
         *(unsigned int *)MK_FP(ss, sp) = 0;
 	
-        EntradaExe = psp + 0x100; // A origem de um executável binário puro começa
-		                          // em 100h, logo após o PSP.
+        EntradaExe = psp + 0x100; // A origem de um executï¿½vel binï¿½rio puro comeï¿½a
+		                          // em 100h, logo apï¿½s o PSP.
 			
     }
 
@@ -4083,9 +4106,9 @@ e os requisítos dos sistema exigidos pelo programa no formato APPX
 
     antigoATD = ATD;
 	
-    ATD = psp + 0x80; // Área de Transferência de dados após deslocamento 80h.
+    ATD = psp + 0x80; // ï¿½rea de Transferï¿½ncia de dados apï¿½s deslocamento 80h.
 	
-	// Registro do executável
+	// Registro do executï¿½vel
 	
  registrarAPP(prog, formato, tipoPrograma, versaoMinima, subversaoMinima, EntradaExe, arquiteturaSuportada, SalvarNome, TamanhoExe, 1);	
 	
@@ -4698,7 +4721,7 @@ static void gerenciar_memlivre_PXDOS_16(GERMEMORIA *gerenciamentomemoria, void *
 	
     abs /= 16;
 	
-    // Ignora requisições livres 
+    // Ignora requisiï¿½ï¿½es livres 
 	
     if (abs > 0x6000U)
     {
