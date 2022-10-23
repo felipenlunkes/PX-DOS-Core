@@ -87,7 +87,11 @@ Antes de construir o interpretador de comandos, você deve construir a libc do P
 
 <div align="justify">
 
-Monte a imagem de disquete do PX-DOS e substitua os arquivos gerados. O instalador do carregador de inicialização, apaptado do FreeDOS, será disponibilizado em breve, para que seja possível fazer uma instalação em disquete ou disco rígido do zero.
+Monte a imagem de disquete do PX-DOS e substitua os arquivos gerados.
+
+> O instalador do carregador de inicialização, apaptado do FreeDOS, será disponibilizado em breve, para que seja possível fazer uma instalação em disquete ou disco rígido do zero.
+
+Após, execute o sistema junto a uma gerenciador de máquinas virtuais, como VirtualBox ou qemu.
 
 </div>
 
