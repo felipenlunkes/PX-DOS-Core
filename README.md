@@ -3,14 +3,14 @@
 <h1>PX-DOS Operating System</h1>
 <h1>Sistema Operacional PX-DOS</h3>
 
-![](https://img.shields.io/github/license/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/stars/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/issues/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/issues-closed/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/issues-pr/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/issues-pr-closed/felipenlunkes/PX-DOS.svg)
-![](https://img.shields.io/github/downloads/felipenlunkes/PX-DOS/total.svg)
-![](https://img.shields.io/github/release/felipenlunkes/PX-DOS.svg)
+![](https://img.shields.io/github/license/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/stars/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/issues/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/issues-closed/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/issues-pr/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/issues-pr-closed/felipenlunkes/PX-DOS-Core.svg)
+![](https://img.shields.io/github/downloads/felipenlunkes/PX-DOS-Core/total.svg)
+![](https://img.shields.io/github/release/felipenlunkes/PX-DOS-Core.svg)
 
 </div>
 
@@ -20,7 +20,7 @@
 
 <div align="center">
   
-[![PX-DOS Kernel](https://github-readme-stats.vercel.app/api/pin/?username=felipenlunkes&repo=PX-DOS&theme=dark)](https://github.com/felipenlunkes/PX-DOS)
+[![PX-DOS Kernel](https://github-readme-stats.vercel.app/api/pin/?username=felipenlunkes&repo=PX-DOS-Core&theme=dark)](https://github.com/felipenlunkes/PX-DOS)
 [![PX-DOS Drivers](https://github-readme-stats.vercel.app/api/pin/?username=felipenlunkes&repo=PX-DOS-Drivers&theme=dark)](https://github.com/felipenlunkes/PX-DOS-Drivers)
 [![PX-DOS Init](https://github-readme-stats.vercel.app/api/pin/?username=felipenlunkes&repo=PX-DOS-init&theme=dark)](https://github.com/felipenlunkes/PX-DOS-init)
 [![PX-DOS libc](https://github-readme-stats.vercel.app/api/pin/?username=felipenlunkes&repo=PX-DOS-libc&theme=dark)](https://github.com/felipenlunkes/PX-DOS-libc)
